@@ -19,7 +19,7 @@ void* CTuple::operator[](int index) {
 	if (index >= 0 && index < m_types.size()) {
 		return m_types[index]->value();
 	}
-	return NULL;
+	return nullpt;
 }
 
 std::string CTuple::type(int index) const {
