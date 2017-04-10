@@ -10,6 +10,7 @@
 class IType {
 	public:
 		virtual void* value() = 0;
+		virtual const std::string& get_type() const = 0;
 		virtual ~IType() {}
 };
 
@@ -23,7 +24,7 @@ class CType : public IType {
 		virtual void* value() {
 			return reinterpret_cast<void*>(&m_val);
 		}
-		const std::string& get_type() const {
+		virtual const std::string& get_type() const {
 			return m_type_id;
 		}
 		virtual ~CType() {}
@@ -79,5 +80,6 @@ class CTuple {
 	public:
 		explicit CTuple(const std::list<std::string>& types);
 		void* operator[](int index);
+		std::string type(int index) const;
 		~CTuple() {}
 };

@@ -16,8 +16,15 @@ CTuple::CTuple(const std::list<std::string>& types) {
 }
 
 void* CTuple::operator[](int index) {
-	if (index < 0 && index > m_types.size()) {
-		return NULL;
+	if (index >= 0 && index < m_types.size()) {
+		return m_types[index]->value();
 	}
-	return m_types[index]->value();
+	return NULL;
+}
+
+std::string CTuple::type(int index) const {
+	if (index >= 0 && index < m_types.size()) {
+		return m_types[index]->get_type();
+	}
+	return "No such element";
 }
